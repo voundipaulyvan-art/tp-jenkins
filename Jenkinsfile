@@ -68,7 +68,7 @@ pipeline {
         // ── Stage 2 : Compiler ───────────────────────
         stage('Build') {
             steps {
-                sh 'mvn clean compile -B'
+                bat 'mvn clean compile -B'
                 // -B = batch mode (pas de couleurs, logs Jenkins-friendly)
             }
         }
@@ -80,7 +80,7 @@ pipeline {
                 not { expression { return params.SKIP_TESTS } }
             }
             steps {
-                sh 'mvn test -B'
+                bat 'mvn test -B'
             }
             post {
                 always {
@@ -99,7 +99,7 @@ pipeline {
                 not { expression { return params.SKIP_TESTS } }
             }
             steps {
-                sh 'mvn verify -Dsurefire.skip=true -B'
+                bat 'mvn verify -Dsurefire.skip=true -B'
             }
             post {
                 always {
@@ -111,7 +111,7 @@ pipeline {
         // ── Stage 5 : Couverture de code ─────────────
         stage('Couverture JaCoCo') {
             steps {
-                sh 'mvn jacoco:report -B'
+                bat 'mvn jacoco:report -B'
             }
             post {
                 always {
@@ -128,7 +128,7 @@ pipeline {
         // ── Stage 6 : Analyse qualité ─────────────────
         stage('Qualité') {
             steps {
-                sh '''
+                bat '''
                     mvn checkstyle:checkstyle \
                         pmd:pmd \
                         pmd:cpd \
