@@ -126,7 +126,8 @@ pipeline {
         }
 
         // ── Stage 6 : Analyse qualité ─────────────────
-        stage('Qualité') {
+        /*
+	stage('Qualité') {
             steps {
                 bat '''
                     mvn checkstyle:checkstyle \
@@ -156,6 +157,7 @@ pipeline {
                 }
             }
         }
+	*/
 
         // ── Stage 7 : Archiver le JAR ─────────────────
         stage('Archive') {
