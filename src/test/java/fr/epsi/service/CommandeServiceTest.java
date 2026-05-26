@@ -130,4 +130,15 @@ class CommandeServiceTest {
     void categoriser_CinqCentsEuros_RetourneGrande() {
         assertEquals("GRANDE", service.categoriserCommande(500.0));
     }
+    @Test
+    @DisplayName("Frontière : exactement 50€ → MOYENNE (pas PETITE)")
+    void categoriser_CinquanteEuros_RetourneMoyenne() {
+        assertEquals("MOYENNE", service.categoriserCommande(50.0));
+    }
+
+    @Test
+    @DisplayName("Frontière : exactement 200€ → GRANDE (pas MOYENNE)")
+    void categoriser_DeuxCentsEuros_RetourneGrande() {
+        assertEquals("GRANDE", service.categoriserCommande(200.0));
+    }
 }
